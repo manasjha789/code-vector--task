@@ -1,3 +1,10 @@
+const express = require("express");
+const productsRouter = require("./routes/products");
+
+const app = express();
+
+app.use("/products", productsRouter);
+
 app.get("/", (req, res) => {
   res.json({
     project: "CodeVector Backend Task",
@@ -15,4 +22,10 @@ app.get("/", (req, res) => {
       "Render deployment"
     ]
   });
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
