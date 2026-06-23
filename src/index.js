@@ -1,23 +1,18 @@
-const express = require("express");
-const productsRouter = require("./routes/products");
-
-const app = express();
-
-app.use(express.json());
-
-// Health Check Route
 app.get("/", (req, res) => {
   res.json({
-    status: "ok",
-    message: "CodeVector Backend Running",
+    project: "CodeVector Backend Task",
+    totalProducts: 200000,
+    endpoints: {
+      health: "/",
+      products: "/products",
+      electronics: "/products?category=Electronics"
+    },
+    features: [
+      "Cursor-based pagination",
+      "Category filtering",
+      "PostgreSQL (Neon)",
+      "200,000 seeded products",
+      "Render deployment"
+    ]
   });
-});
-
-// Products API
-app.use("/products", productsRouter);
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
 });
